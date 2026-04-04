@@ -1,0 +1,16 @@
+{
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "greetingagent": {
+            "runtimeId": "greetingagent_greetingagent-n8s5DfG1YP",
+            "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:615167489582:runtime/greetingagent_greetingagent-n8s5DfG1YP",
+            "roleArn": "arn:aws:iam::615167489582:role/AgentCore-greetingagent-d-ApplicationAgentGreetinga-0Gkq43SAcUBy"
+          }
+        },
+        "stackName": "AgentCore-greetingagent-default"
+      }
+    }
+  }
+}
