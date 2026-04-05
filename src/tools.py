@@ -162,3 +162,49 @@ def weather_greeting(city: str) -> dict:
         "temperature_c": weather["temp"],
         "greeting": weather["greeting"],
     }
+
+
+def motivational_quote(topic: str = "general") -> dict:
+    """
+    Returns a motivational quote, optionally filtered by topic.
+
+    Args:
+        topic: The topic for the quote (general, work, creativity, perseverance, kindness)
+
+    Returns:
+        Dictionary with the quote, author, and topic
+    """
+    quotes = {
+        "general": [
+            {"quote": "The only way to do great work is to love what you do.", "author": "Steve Jobs"},
+            {"quote": "Be the change you wish to see in the world.", "author": "Mahatma Gandhi"},
+            {"quote": "In the middle of difficulty lies opportunity.", "author": "Albert Einstein"},
+        ],
+        "work": [
+            {"quote": "Hard work beats talent when talent doesn't work hard.", "author": "Tim Notke"},
+            {"quote": "The future depends on what you do today.", "author": "Mahatma Gandhi"},
+        ],
+        "creativity": [
+            {"quote": "Creativity is intelligence having fun.", "author": "Albert Einstein"},
+            {"quote": "The chief enemy of creativity is good sense.", "author": "Pablo Picasso"},
+        ],
+        "perseverance": [
+            {"quote": "It does not matter how slowly you go as long as you do not stop.", "author": "Confucius"},
+            {"quote": "Fall seven times, stand up eight.", "author": "Japanese Proverb"},
+        ],
+        "kindness": [
+            {"quote": "No act of kindness, no matter how small, is ever wasted.", "author": "Aesop"},
+            {"quote": "Be kind whenever possible. It is always possible.", "author": "Dalai Lama"},
+        ],
+    }
+
+    logger.info(f"Fetching motivational quote for topic: {topic}")
+    topic_key = topic.lower().strip()
+    topic_quotes = quotes.get(topic_key, quotes["general"])
+    selected = random.choice(topic_quotes)
+
+    return {
+        "topic": topic_key,
+        "quote": selected["quote"],
+        "author": selected["author"],
+    }
