@@ -22,8 +22,9 @@ async def invoke(payload, context):
         context: Runtime context from AgentCore
     """
     user_prompt = payload.get("prompt", "Hello")
+    session_id = context.session_id if hasattr(context, 'session_id') else "unknown"
 
-    log.info(f"Received prompt: {user_prompt}")
+    log.info(f"Received prompt: {user_prompt} | session: {session_id}")
 
     agent = Agent(
         model=load_model(),

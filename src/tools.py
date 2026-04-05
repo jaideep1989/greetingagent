@@ -2,7 +2,10 @@
 Skills for the Greeting Agent
 """
 import random
+import logging
 from datetime import datetime
+
+logger = logging.getLogger(__name__)
 
 
 def greet_in_language(name: str, language: str) -> dict:
@@ -31,10 +34,12 @@ def greet_in_language(name: str, language: str) -> dict:
     }
 
     lang = language.lower().strip()
+    logger.info(f"Greeting {name} in {lang}")
     greeting = greetings.get(lang)
 
     if not greeting:
         available = ", ".join(greetings.keys())
+        logger.warning(f"Unknown language requested: {language}")
         return {"error": f"Unknown language: {language}. Available: {available}"}
 
     return {
