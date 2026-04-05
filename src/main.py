@@ -5,7 +5,7 @@ Built with AWS AgentCore + Strands
 from strands import Agent
 from bedrock_agentcore.runtime import BedrockAgentCoreApp
 from model.load import load_model
-from tools import greet_in_language, fun_fact_today, give_compliment, cheers_around_the_world
+from tools import greet_in_language, fun_fact_today, give_compliment, cheers_around_the_world, weather_greeting
 
 # Create the AgentCore app
 app = BedrockAgentCoreApp()
@@ -37,10 +37,12 @@ async def invoke(payload, context):
         - give_compliment: Give someone a personalized compliment
         - cheers_around_the_world: Show how to say 'cheers' in many cultures
 
+        - weather_greeting: Give a weather-themed greeting for any city
+
         Use your tools whenever they're relevant. Be cheerful and conversational.
         If someone just says hi, greet them and offer to show off your skills.
         """,
-        tools=[greet_in_language, fun_fact_today, give_compliment, cheers_around_the_world],
+        tools=[greet_in_language, fun_fact_today, give_compliment, cheers_around_the_world, weather_greeting],
     )
 
     stream = agent.stream_async(user_prompt)
