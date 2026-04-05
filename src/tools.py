@@ -132,3 +132,33 @@ def cheers_around_the_world() -> dict:
         },
         "all_cheers": cheers,
     }
+
+
+def weather_greeting(city: str) -> dict:
+    """
+    Generates a weather-appropriate greeting for a city.
+    Uses simulated weather data for demo purposes.
+
+    Args:
+        city: The city name to generate a weather greeting for
+
+    Returns:
+        Dictionary with city, weather condition, and a themed greeting
+    """
+    weather_conditions = [
+        {"condition": "sunny", "temp": 28, "greeting": f"What a beautiful sunny day in {city}! Perfect for a walk."},
+        {"condition": "rainy", "temp": 15, "greeting": f"It's raining in {city} — grab an umbrella and stay cozy!"},
+        {"condition": "cloudy", "temp": 20, "greeting": f"Cloudy skies over {city} today, but your smile brightens things up!"},
+        {"condition": "snowy", "temp": -2, "greeting": f"Snow is falling in {city}! Time for hot cocoa and warm vibes."},
+        {"condition": "windy", "temp": 18, "greeting": f"Hold onto your hat in {city} — it's a breezy one today!"},
+    ]
+
+    logger.info(f"Generating weather greeting for {city}")
+    weather = random.choice(weather_conditions)
+
+    return {
+        "city": city,
+        "condition": weather["condition"],
+        "temperature_c": weather["temp"],
+        "greeting": weather["greeting"],
+    }
