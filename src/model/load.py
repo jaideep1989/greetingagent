@@ -1,11 +1,15 @@
 from strands.models import BedrockModel
-
-MODEL_ID = "global.anthropic.claude-sonnet-4-5-20250929-v1:0"
+from config import DEFAULT_MODEL_ID, MAX_TOKENS, TEMPERATURE
 
 
 def load_model() -> BedrockModel:
     """
     Get Bedrock model client.
     Uses IAM authentication via the execution role.
+    Configuration loaded from config.py / environment variables.
     """
-    return BedrockModel(model_id=MODEL_ID)
+    return BedrockModel(
+        model_id=DEFAULT_MODEL_ID,
+        max_tokens=MAX_TOKENS,
+        temperature=TEMPERATURE,
+    )
