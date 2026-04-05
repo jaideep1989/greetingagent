@@ -34,6 +34,7 @@ def greet_in_language(name: str, language: str) -> dict:
     }
 
     lang = language.lower().strip()
+    name = name.strip()
     logger.info(f"Greeting {name} in {lang}")
     greeting = greetings.get(lang)
 
