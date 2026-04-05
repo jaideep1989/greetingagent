@@ -209,3 +209,44 @@ def motivational_quote(topic: str = "general") -> dict:
         "quote": selected["quote"],
         "author": selected["author"],
     }
+
+
+def time_aware_greeting(name: str, timezone: str = "UTC") -> dict:
+    """
+    Generates a greeting appropriate for the time of day.
+
+    Args:
+        name: The person's name
+        timezone: Timezone string (for display only, uses local time)
+
+    Returns:
+        Dictionary with a time-appropriate greeting
+    """
+    hour = datetime.now().hour
+
+    if 5 <= hour < 12:
+        period = "morning"
+        greeting = f"Good morning, {name}! Rise and shine — it's a brand new day!"
+        emoji = "🌅"
+    elif 12 <= hour < 17:
+        period = "afternoon"
+        greeting = f"Good afternoon, {name}! Hope your day is going great!"
+        emoji = "☀️"
+    elif 17 <= hour < 21:
+        period = "evening"
+        greeting = f"Good evening, {name}! Time to wind down and relax."
+        emoji = "🌆"
+    else:
+        period = "night"
+        greeting = f"Hey {name}, burning the midnight oil? Don't forget to rest!"
+        emoji = "🌙"
+
+    logger.info(f"Time-aware greeting for {name}: {period}")
+
+    return {
+        "name": name,
+        "period": period,
+        "greeting": greeting,
+        "emoji": emoji,
+        "timezone": timezone,
+    }
